@@ -14,7 +14,7 @@ public class ecoFriendlyUsers {
     public static void main(String[] args) {
         final int LIMIT_CONSUMPTION = 300;
         String filePath = "F:\\data.csv";
-        String pathToCreate = "F:\\result.txt";
+        String pathToCreate = "F:\\result.csv";
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
