@@ -37,25 +37,15 @@ public class ecoFriendlyUsers {
         }
     }
 
-    private static boolean isEcoFriendly(String lines, int limitConsumption) {
-
-        String[] data = lines.split("\\|");
-//        int waterCount = Integer.parseInt(data[2]);
-//        int gasCount1 = Integer.parseInt(data[3]);
-//        int gasCount2 = Integer.parseInt(data[4]);
-//        int electricalCount1 = Integer.parseInt(data[5]);
-//        int electricalCount2 = Integer.parseInt(data[6]);
-
-        for (int i = 2; i < data.length; i++) {
-            int consumption = Integer.parseInt(data[i]);
-            if (consumption > limitConsumption) {
-                return false;
-            }
-        }
-        return true;
-
-//        return waterCount <= limitConsumption &&
-//                (gasCount1 + gasCount2) <= limitConsumption &&
-//                (electricalCount1 + electricalCount2) <= limitConsumption;
+    private static boolean isEcoFriendly(String line, int limitConsumption) {
+        String[] data = line.split("\\|");
+        UserResources consumption = new UserResources(
+                Integer.parseInt(data[2]),
+                Integer.parseInt(data[3]),
+                Integer.parseInt(data[4]),
+                Integer.parseInt(data[5]),
+                Integer.parseInt(data[6])
+        );
+        return consumption.isEcoFriendly(limitConsumption);
     }
 }
