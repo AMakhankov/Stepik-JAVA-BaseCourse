@@ -1,6 +1,6 @@
 package org.stepik.java.Task5extra.Task2;
 
-public class UserResources {
+public class UserResourcesConsumption implements ResourceConsumption{
 
     //private int id;
     //private int name;
@@ -10,8 +10,8 @@ public class UserResources {
     private int electroCountDay;
     private int electroCountNight;
 
-    public UserResources(int waterCountDay, int waterCountNight,
-                int gasCount, int electroCountDay, int electroCountNight) {
+    public UserResourcesConsumption(int waterCountDay, int waterCountNight,
+                                    int gasCount, int electroCountDay, int electroCountNight) {
         //this.id = id;
         //this.name = name;
         this.waterCountDay = waterCountDay;
@@ -33,11 +33,10 @@ public class UserResources {
         return electroCountDay + electroCountNight;
     }
 
+    @Override
     public boolean isEcoFriendly(int limit) {
         return getTotalWaterConsumption() <= limit &&
                 getTotalGasConsumption() <= limit &&
                 getTotalElectroConsumption() <= limit;
     }
-
-
 }

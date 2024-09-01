@@ -8,6 +8,7 @@ package org.stepik.java.Task5extra.Task2;
 // потребляет меньше изначально заданного числа
 
 import java.io.*;
+import java.util.List;
 
 public class ecoFriendlyUsers {
 
@@ -16,36 +17,18 @@ public class ecoFriendlyUsers {
         String filePath = "F:\\data.csv";
         String pathToCreate = "F:\\result.csv";
 
+        Reader dataReader = new MyFileReader(filePath);
+
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            FileWriter writer = new FileWriter(pathToCreate);
-            reader.readLine();
-            writer.write("id|name|waterCountDay|waterCountNight|gasCount|electroCountDay|electroCountNight" + "\n");
-
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                if (isEcoFriendly(line, LIMIT_CONSUMPTION)) {
-                    writer.write(line + "\n");
+            List<ResourceConsumption> ecoFriendlyUsers = dataReader.readLines(LIMIT_CONSUMPTION);
+            try (FileWriter writer = new FileWriter(pathToCreate)) {
+                writer.write("id|name|waterCountDay|waterCountNight|gasCount|electroCountDay|electroCountNight\n");
+                for (ResourceConsumption user : ecoFriendlyUsers) {
+                    writer.write(user.toString() + "\n");
                 }
             }
-
-            reader.close();
-            writer.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    private static boolean isEcoFriendly(String line, int limitConsumption) {
-        String[] data = line.split("\\|");
-        UserResources consumption = new UserResources(
-                Integer.parseInt(data[2]),
-                Integer.parseInt(data[3]),
-                Integer.parseInt(data[4]),
-                Integer.parseInt(data[5]),
-                Integer.parseInt(data[6])
-        );
-        return consumption.isEcoFriendly(limitConsumption);
     }
 }
