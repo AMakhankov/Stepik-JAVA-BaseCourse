@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StreamReader implements Reader{
+
     @Override
-    public List<ResourceConsumption> readLines(int limitConsumption) throws IOException {
+    public List<UserResourcesConsumption> readLines() throws IOException {
         return List.of();
     }
 }

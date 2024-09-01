@@ -14,8 +14,8 @@ public class MyFileReader implements Reader{
     }
 
     @Override
-    public List<ResourceConsumption> readLines (int limitConsumption) throws IOException {
-        List<ResourceConsumption> result = new ArrayList<>();
+    public List<UserResourcesConsumption> readLines() throws IOException {
+        List<UserResourcesConsumption> result = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -29,13 +29,11 @@ public class MyFileReader implements Reader{
                 int electroCountDay = Integer.parseInt(data[5]);
                 int electroCountNight = Integer.parseInt(data[6]);
 
-                ResourceConsumption resourceConsumption = new UserResourcesConsumption(
+                UserResourcesConsumption resourceConsumption = new UserResourcesConsumption(
                         waterCountDay, waterCountNight, gasCount, electroCountDay, electroCountNight
                 );
 
-                if (resourceConsumption.isEcoFriendly(limitConsumption)) {
-                    result.add(resourceConsumption);
-                }
+                result.add(resourceConsumption);
             }
         }
         return result;

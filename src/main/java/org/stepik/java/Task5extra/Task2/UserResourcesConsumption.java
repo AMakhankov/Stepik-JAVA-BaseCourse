@@ -39,4 +39,10 @@ public class UserResourcesConsumption implements ResourceConsumption{
                 getTotalGasConsumption() <= limit &&
                 getTotalElectroConsumption() <= limit;
     }
+
+    public String toNormalFormat() {
+        return waterCountDay + "|" + waterCountNight + "|" +
+                gasCount + "|" + electroCountDay + "|" +
+                electroCountNight;
+    }
 }

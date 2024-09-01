@@ -18,15 +18,13 @@ public class ecoFriendlyUsers {
         String pathToCreate = "F:\\result.csv";
 
         Reader dataReader = new MyFileReader(filePath);
+        UserFilter filter = new UserFilter();
+        Writer fileWriter = new MyFileWriter(pathToCreate);
 
         try {
-            List<ResourceConsumption> ecoFriendlyUsers = dataReader.readLines(LIMIT_CONSUMPTION);
-            try (FileWriter writer = new FileWriter(pathToCreate)) {
-                writer.write("id|name|waterCountDay|waterCountNight|gasCount|electroCountDay|electroCountNight\n");
-                for (ResourceConsumption user : ecoFriendlyUsers) {
-                    writer.write(user.toString() + "\n");
-                }
-            }
+            List<UserResourcesConsumption> users = dataReader.readLines();
+            List<UserResourcesConsumption> ecoFriendlyUsers = filter.filter(users, LIMIT_CONSUMPTION);
+            fileWriter.writeLines(ecoFriendlyUsers);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
