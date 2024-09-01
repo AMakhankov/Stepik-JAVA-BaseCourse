@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ecoFriendlyUsers {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         final int LIMIT_CONSUMPTION = 300;
         String filePath = "F:\\data.csv";
         String pathToCreate = "F:\\result.csv";
@@ -21,12 +21,9 @@ public class ecoFriendlyUsers {
         UserFilter filter = new UserFilter();
         Writer fileWriter = new MyFileWriter(pathToCreate);
 
-        try {
-            List<UserResourcesConsumption> users = dataReader.readLines();
-            List<UserResourcesConsumption> ecoFriendlyUsers = filter.filter(users, LIMIT_CONSUMPTION);
-            fileWriter.writeLines(ecoFriendlyUsers);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        List<UserResourcesConsumption> users = dataReader.readLines();
+        List<UserResourcesConsumption> ecoFriendlyUsers = filter.filter(users, LIMIT_CONSUMPTION);
+        fileWriter.writeLines(ecoFriendlyUsers);
+
     }
 }
