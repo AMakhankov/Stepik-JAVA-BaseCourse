@@ -21,6 +21,7 @@ public class ecoFriendlyUsers {
         UserFilter filter = new UserFilter();
         Writer fileWriter = new MyFileWriter(pathToCreate);
 
+// try/catch -> throws
         List<UserResourcesConsumption> users = dataReader.readLines();
         List<UserResourcesConsumption> ecoFriendlyUsers = filter.filter(users, LIMIT_CONSUMPTION);
         fileWriter.writeLines(ecoFriendlyUsers);
