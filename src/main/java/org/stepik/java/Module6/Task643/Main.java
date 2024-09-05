@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        final int LIMIT = 10;
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Stream<String> StreamOfLines = bufferedReader.lines();
         HashMap<String, Integer> resultMap = new HashMap<>();
@@ -25,7 +27,7 @@ public class Main {
                     }
                     return r2.getValue() - r1.getValue();
                 })
-                .limit(10)
+                .limit(LIMIT)
                 .forEach(r -> System.out.println(r.getKey()));
     }
 }
