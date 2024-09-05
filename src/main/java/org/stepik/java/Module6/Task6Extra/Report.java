@@ -35,7 +35,7 @@ public class Report {
     public static String reportHistory(List<Report> reports, String studentUserName, int count) {
         return reports.stream()
                 .filter(r -> r.studentUserName.contains(studentUserName))
-                .sorted(Comparator.comparing(e -> e.date))
+                .sorted(Comparator.comparing(r -> r.date))
                 .collect(Collectors.collectingAndThen(
                         Collectors.toList(),
                         list -> {
