@@ -3,6 +3,7 @@ package org.stepik.java.Module6.Task6Extra;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import static org.stepik.java.Module6.Task6Extra.Report.reportHistory;
 
 
 public class Main {
