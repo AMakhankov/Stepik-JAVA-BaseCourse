@@ -50,19 +50,13 @@ public class Report {
     public static String reportHistory(List<Report> reports, String studentUserName, int count) {
         String result = (reports.stream()
                 .filter(r -> r.studentUserName.contains(studentUserName))
-                .sorted(Comparator.comparing(r -> r.date))
-                .collect(Collectors.collectingAndThen(
-                        Collectors.toList(),
-                        list -> {
-                            Collections.reverse(list);
-                            return list.stream();
-                        }
-                ))
+                .sorted(Comparator.comparing(Report::getDate).reversed())
                 .limit(count)
-                .map(report -> report.getStudentUserName() + "\n" +
-                        report.getDate() + "\n" +
-                        report.getHours() + "\n" +
-                        report.getTitle() + "\n")
+                .sorted(Comparator.comparing(Report::getDate))
+                .map(r -> r.getStudentUserName() + "\n" +
+                        r.getDate() + "\n" +
+                        r.getHours() + "\n" +
+                        r.getTitle() + "\n")
                 .collect(Collectors.joining("-----------------\n"))
         );
         return result;
