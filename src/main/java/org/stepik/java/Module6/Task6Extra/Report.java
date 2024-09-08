@@ -48,7 +48,7 @@ public class Report {
     }
 
     public static String reportHistory(List<Report> reports, String studentUserName, int count) {
-        String result = (reports.stream()
+        return reports.stream()
                 .filter(r -> r.studentUserName.contains(studentUserName))
                 .sorted(Comparator.comparing(Report::getDate).reversed())
                 .limit(count)
@@ -57,9 +57,8 @@ public class Report {
                         r.getDate() + "\n" +
                         r.getHours() + "\n" +
                         r.getTitle() + "\n")
-                .collect(Collectors.joining("-----------------\n"))
+                .collect(Collectors.joining("-----------------\n")
         );
-        return result;
     }
 
 //    @Override
