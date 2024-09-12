@@ -17,3 +17,4 @@ public class Main {
         return t -> condition.test(t) ? ifTrue.apply(t) : ifFalse.apply(t);
     }
 }
+
