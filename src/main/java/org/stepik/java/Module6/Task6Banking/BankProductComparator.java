@@ -17,10 +17,6 @@ public class BankProductComparator implements Comparator<Product> {
             return 1;
         }
 
-        if (p1.getCurency() == p2.getCurency()) {
-            return 0;
-        }
-
         if (p1.getCurency() == Curency.RUB && p2.getCurency() != Curency.RUB) {
             return -1;
         }
@@ -35,10 +31,6 @@ public class BankProductComparator implements Comparator<Product> {
 
         if (p1.getType() != Type.CREDIT && p2.getType() == Type.CREDIT) {
             return 1;
-        }
-
-        if (p1.getType() == p2.getType()) {
-            return 0;
         }
 
         if (p1.getType() == Type.CREDIT && p2.getType() != Type.CREDIT) {
