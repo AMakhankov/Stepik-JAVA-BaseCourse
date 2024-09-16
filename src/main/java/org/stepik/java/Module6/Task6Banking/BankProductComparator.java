@@ -21,28 +21,31 @@ public class BankProductComparator implements Comparator<Product> {
             return -1;
         }
 
-        if (!checkIsDebitType(p1, DebitType.TS) && checkIsDebitType(p2, DebitType.TS)) {
-            return 1;
-        }
+        if (p1.getCurency() == p2.getCurency()) {
 
-        if (checkIsDebitType(p1, DebitType.TS) && !checkIsDebitType(p2, DebitType.TS)) {
-            return -1;
-        }
+            if (!checkIsDebitType(p1, DebitType.TS) && checkIsDebitType(p2, DebitType.TS)) {
+                return 1;
+            }
 
-        if (p1.getType() != Type.CREDIT && p2.getType() == Type.CREDIT) {
-            return 1;
-        }
+            if (checkIsDebitType(p1, DebitType.TS) && !checkIsDebitType(p2, DebitType.TS)) {
+                return -1;
+            }
 
-        if (p1.getType() == Type.CREDIT && p2.getType() != Type.CREDIT) {
-            return -1;
-        }
+            if (p1.getType() != Type.CREDIT && p2.getType() == Type.CREDIT) {
+                return 1;
+            }
 
-        if (!checkIsDebitType(p1, DebitType.DEPOSIT) && checkIsDebitType(p2, DebitType.DEPOSIT)) {
-            return 1;
-        }
+            if (p1.getType() == Type.CREDIT && p2.getType() != Type.CREDIT) {
+                return -1;
+            }
 
-        if (checkIsDebitType(p1, DebitType.DEPOSIT) && !checkIsDebitType(p2, DebitType.DEPOSIT)) {
-            return -1;
+            if (!checkIsDebitType(p1, DebitType.DEPOSIT) && checkIsDebitType(p2, DebitType.DEPOSIT)) {
+                return 1;
+            }
+
+            if (checkIsDebitType(p1, DebitType.DEPOSIT) && !checkIsDebitType(p2, DebitType.DEPOSIT)) {
+                return -1;
+            }
         }
 
         return 0;
