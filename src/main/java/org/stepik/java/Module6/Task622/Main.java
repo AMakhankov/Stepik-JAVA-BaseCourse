@@ -11,7 +11,7 @@ public class Main {
         ByteArrayInputStream bais = new ByteArrayInputStream(numbers.getBytes(StandardCharsets.UTF_8));
         System.setIn(bais);
 
-        List<Integer> listOfOddInt = new ArrayList<>(); //
+        List<Integer> listOfOddInt = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         int x;

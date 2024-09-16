@@ -23,15 +23,21 @@ public class Main {
     }
 
     public static <T> Set<T> symmetricDifference(Set<? extends T> set1, Set<? extends T> set2) {
-        Set<T> result = new HashSet<>(set1);
 
-        for (T element : set2) {
-            if (result.contains(element)) {
-                result.remove(element);
-            } else {
-                result.add(element);
+        Set<T> result = new HashSet<>();
+
+        set1.forEach(e -> {
+            if (!set2.contains(e)) {
+                result.add(e);
             }
-        }
+        });
+
+        set2.forEach(e -> {
+            if (!set1.contains(e)) {
+                result.add(e);
+            }
+        });
+
         return result;
     }
 }
